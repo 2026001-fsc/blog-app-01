@@ -4,26 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ブログ</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>ブログ一覧</title>
 </head>
 
 <body>
-    <div class="top">
-        <a class="link" href="/blog/new">投稿</a><br>
-        <a class="link" href="/blog">ホーム</a>
 
+    <div class="top">
+        <a class="link" th:href="@{/blog/new}">新規投稿</a><br>
+        <a class="link" th:href="@{/blogs}">ホーム</a>
     </div>
+
+    <hr>
+
     <div>
-        <ul th:if="${not #lists.isEmpty(reports)}">
-            <li th:each="blog:${reports}">
-                    <span th:text="${blog.getTitle()}">ブログタイトル</span>
-                    <span th:text="${blog.getTexe()}">本文</span>
+        <ul th:if="${not #lists.isEmpty(blogs)}">
+            <li th:each="blog : ${blogs}">
+                <h3>
+                    <a th:href="@{/blogs/{id}(id=${blog.id})}" th:text="${blog.title}">ブログタイトル</a>
+                </h3>
+                <p th:text="${blog.text}">本文のプレビューがここに表示されます。</p>
             </li>
         </ul>
-        <p th:if="${#lists.isEmpty(report)}">
-            記事がありません
+
+        <p th:if="${#lists.isEmpty(blogs)}">
+            記事がありません。
         </p>
     </div>
+
 </body>
 
 </html>

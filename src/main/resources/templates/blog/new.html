@@ -2,25 +2,43 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>投稿</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>新規投稿</title>
 </head>
 
 <body>
-    <div class="top">
-        <a class="link" href="/blog/new">投稿</a><br>
-        <a class="link" href="/blog">ホーム</a>
+
+  <div class="top">
+    <a class="link" th:href="@{/blog/new}">新規投稿</a><br>
+    <a class="link" th:href="@{/blogs}">ホーム</a>
+  </div>
+
+  <hr>
+  <h1>ブログ新規投稿</h1>
+
+  <form th:action="@{/blogs}" method="post">
+    <div>
+      <label for="title">タイトル：</label>
+      <input type="text" id="title" name="title" required>
     </div>
-    <form action="/blogs" method="post">
-        <h1 class="blog-title">投稿</h1>
-        <label for="title">タイトル</label>
-        <input type="text" id="title" name="title" placeholder="入力してください"><br>
-        <label for="text">本文</label>
-        <input type="text" id="text" name="text" placeholder="入力してください"><br>
-        <button type="submit">保存</button>
-    </form>
+
+    <br>
+
+    <div>
+      <label for="text">本文：</label>
+      <textarea id="text" name="text" rows="5" cols="30" required></textarea>
+    </div>
+
+    <br>
+
+    <button type="submit">投稿する</button>
+  </form>
+
+  <hr>
+  <a th:href="@{/blogs}">一覧に戻る</a>
+
 </body>
 
 </html>
